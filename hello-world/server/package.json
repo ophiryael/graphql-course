@@ -1,0 +1,7 @@
+{
+  "name": "hello-world-server",
+  "dependencies": {
+    "apollo-server": "^2.25.2",
+    "graphql": "^15.6.1"
+  }
+}
