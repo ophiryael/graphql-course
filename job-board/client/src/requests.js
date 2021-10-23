@@ -23,6 +23,10 @@ export async function loadCompany(id) {
       id
       name
       description
+      jobs {
+        id
+        title
+      }
     }
   }`;
   const data = await graphqlRequest(query, { id });
