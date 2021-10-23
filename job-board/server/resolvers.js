@@ -1,6 +1,7 @@
 const db = require('./db');
 
 const Query = {
+  company: (_root, { id }) => db.companies.get(id),
   job: (_root, { id }) => db.jobs.get(id),
   jobs: () => db.jobs.list(),
 };

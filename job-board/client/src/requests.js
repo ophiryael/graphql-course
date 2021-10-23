@@ -17,6 +17,18 @@ async function graphqlRequest(query, variables = {}) {
   return responseBody.data;
 }
 
+export async function loadCompany(id) {
+  const query = `query CompanyQuery($id: ID!) {
+    company(id: $id) {
+      id
+      name
+      description
+    }
+  }`;
+  const data = await graphqlRequest(query, { id });
+  return data.company;
+}
+
 export async function loadJob(id) {
   const query = `query JobQuery($id: ID!) {
     job(id: $id) {
