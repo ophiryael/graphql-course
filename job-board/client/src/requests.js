@@ -91,6 +91,6 @@ export async function loadJobs() {
       }
     }
   `;
-  const { data } = await client.query({ query });
+  const { data } = await client.query({ query, fetchPolicy: 'no-cache' });
   return data.jobs;
 }
