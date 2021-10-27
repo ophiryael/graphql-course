@@ -24,9 +24,15 @@ app.use(
 const typeDefs = fs.readFileSync('./schema.graphql', { encoding: 'utf8' });
 const resolvers = require('./resolvers');
 
-function context({ req }) {
-  if (req && req.user) {
+function context({ req, connection }) {
+  // http
+  if (req?.user) {
     return { userId: req.user.sub };
+  }
+  // ws
+  if (connection?.context?.accessToken) {
+    const decodedToken = jwt.verify(connection.context.accessToken, jwtSecret);
+    return { userId: decodedToken.sub };
   }
   return {};
 }
